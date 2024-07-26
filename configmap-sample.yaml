@@ -1,0 +1,13 @@
+#config map
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  DB_HOST: <base64 encoded>
+  APP_MODE: <base64 encoded>
+
+
+# echo "mysql" | base64
+# echo  "bXlzcWwK" | base64 -d
