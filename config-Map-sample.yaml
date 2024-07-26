@@ -13,4 +13,4 @@ data:
 # echo  "bXlzcWwK" | base64 -d
 
 # kubectl create configmap <config_name> --from-literal=<key>=<val> --from-literal=<key>=<val> 
-# kubectl create configmap <config_name> --from-file=<path_to_file>
+# kubectl create configmap <config_name> --from-file=<path_to_file> 
