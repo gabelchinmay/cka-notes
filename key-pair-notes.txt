@@ -1,0 +1,16 @@
+GENERATE KEY -> GENERATE CSR -> GENERATE CRT (self sign/CA)
+
+self sign (create CA key pairs)
+openssl genrsa -out ca.key 2048
+openssl req -new -key ca.key -subj "/CN=KUBERNETES-CA" -out ca.csr
+openssl x509 -req -in ca.csr -signkey ca.key -out ca.crt
+
+use CA to sign 
+openssl genrsa -out admin.key 2048
+openssl req -new -key admin.key -subj "/CN=kube-admin" -out admin.csr
+openssl x509 -req -in admin.csr -CA ca.crt -CAKey ca.key -out admin.crt
+
+
+
+to see crt as txt
+openssl x509 -in /etc/kubernetes/pki/etcd/server.crt -text -noout
