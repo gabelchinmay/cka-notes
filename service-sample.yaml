@@ -1,0 +1,17 @@
+# Service 
+apiVersion: v1
+kind: Service
+metadata:
+  name: image-processing
+  labels:
+    app: myapp
+spec:
+  type: ClusterIP # or NodePort
+  ports:
+    - port: 80
+      targetPort: 8080
+      # nodePort: <node_port>
+  selector:
+    tier: backend
+
+# service can be accessed via: serviceName.serviceNamespace.svc.cluster.local
