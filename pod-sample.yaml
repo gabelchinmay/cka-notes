@@ -80,3 +80,7 @@ spec:
   imagePullSecrets:
     - mame: regcred
 
+
+# kubectl run nginx --image=nginx
+# kubectl run nginx --image=nginx --dry-run=client -o yaml
+# kubectl get pods -l env=dev --show-labels
