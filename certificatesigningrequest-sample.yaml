@@ -1,0 +1,23 @@
+
+apiVersion: certificates.k8s.io/v1
+kind: CertificateSigningRequest
+metadata:
+  name: chinmay
+spec:
+  expirationSeconds: 600
+  usages:
+    - digital signature
+    - key encipherment
+    - server auth
+  request:
+    <request in base64>
+
+
+# openssl req -new -key admin.key -subj "/CN=kube-admin" -out admin.csr   => Generate CSR => encode it in base64
+# cat admin.csr | base64
+
+# kubectl get csr
+# kubectl approve csr akshay
+# kubectl certificate  approve csr akshay
+# kubectl certificate  deny csr agent-smith
+# kubectl delete csr agent-smith
