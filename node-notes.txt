@@ -1,0 +1,11 @@
+kubectl taint nodes node_name key=value:taint_effect
+taint_effects: 
+NoSchedule (new pods will not be scheduled), 
+PreferNoSchedule (try - new pods will not be scheduled), 
+NoExecute (new pods will not be scheduled and existing pods will be removed)
+
+kubectl taint node node app=blue:NoSchedule
+To untain: kubectl taint node controlplane node-role.kubernetes.io/control-plane:NoSchedule-
+
+
+kubectl label node node_name key=val

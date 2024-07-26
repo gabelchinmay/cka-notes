@@ -25,3 +25,9 @@ spec:
 # kubectl create deployment nginx --image=nginx --replicas=4
 # kubectl scale deployment nginx --replicas=4
 # kubectl create deployment nginx --image=nginx --dry-run=client -o yaml > nginx-deployment.yaml
+
+# kubectl rollout status deployment deployment_name
+# kubectl rollout history deployment deployment_name
+# kubectl rollout undo deployment deployment_name
+
+# deployment strategy - recreate (bad), rolling upgrade (good)
