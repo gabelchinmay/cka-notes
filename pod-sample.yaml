@@ -1,0 +1,82 @@
+
+#Pod Sample
+apiVersion: v1
+kind: Pod
+metadata:
+  name: postgres
+  labels:
+    tier: db-tier
+spec:
+  securityContext:
+    runAsUser: 1000
+    capabilities:
+      add: ["MAC ADMIN"]
+  initContainers:
+    - name: postgres
+      image: postgres
+      command: ["sleep"]
+      args: ["10"]
+  containers:
+    - name: postgres
+      image: postgres
+      command: ["sleep"]
+      args: ["10"]
+      env:
+        - name: APP_COLOR
+          valueFrom:
+            configMapKeyRef:
+              name: webapp-config-map
+              key: APP_COLOR
+
+        - name: POSTGRES_PASSWORD
+          value: mysecretpassword
+      ports:
+        - containerPort: 9090
+      envFrom:
+        - configMapRef:
+          name: app-config
+        - secretRef:
+          name: app-secret
+      volumeMounts:
+        - name: data-volume
+          mountPath: /opt
+  nodeName: node01
+  tolerations:
+    - key: "app"
+      operator: "Equal"
+      value: "blue"
+      effect: "NoSchedule"
+  nodeSelector:
+    size: large
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution: #(or) preferredDuringSchedulingIgnoredDuringExecutiuon
+        nodeSelectorTerms:
+          - matchExpressions:
+            - key: size
+              operator: In #In (or) NotIn (or) Exists
+              values:
+                - Large
+  resources:
+    requests:
+      memory: "1Gi"
+      cpu: 2
+    limits:
+      memory: "2Gi"
+      cpu: "5"
+  schedulerName: name_of_custom_scheduler
+  volumes:
+    - name: app-secret-volume
+      secret: 
+        secretName: app-secret
+    - name: data-volume
+      hostPath:
+        path: /data
+        type: Directory 
+    - name: mypd
+      persistentVolumeClaim:
+        claimName: myclaim
+  serviceAccountName: dashboard-sa
+  imagePullSecrets:
+    - mame: regcred
+
