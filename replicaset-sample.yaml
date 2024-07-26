@@ -20,3 +20,5 @@ spec:
   selector:
     matchLabels:
       app: myapp
+
+#scaling: kubectl scale --replicas=5 replicaset/new-replica-set
