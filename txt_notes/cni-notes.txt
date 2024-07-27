@@ -1,0 +1,2 @@
+  /etc/cni/net.d -> cni conf file
+  /opt/cni/bin -> cni binaries
