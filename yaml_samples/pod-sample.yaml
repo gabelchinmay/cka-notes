@@ -22,21 +22,20 @@ spec:
       command: ["sleep"]
       args: ["10"]
       env:
+        - name: POSTGRES_PASSWORD
+          value: mysecretpassword
         - name: APP_COLOR
           valueFrom:
             configMapKeyRef:
               name: webapp-config-map
               key: APP_COLOR
-
-        - name: POSTGRES_PASSWORD
-          value: mysecretpassword
-      ports:
-        - containerPort: 9090
       envFrom:
         - configMapRef:
           name: app-config
         - secretRef:
           name: app-secret
+      ports:
+        - containerPort: 9090
       volumeMounts:
         - name: data-volume
           mountPath: /opt
@@ -78,7 +77,7 @@ spec:
         claimName: myclaim
   serviceAccountName: dashboard-sa
   imagePullSecrets:
-    - mame: regcred
+    - name: regcred
 
 
 # kubectl run nginx --image=nginx
