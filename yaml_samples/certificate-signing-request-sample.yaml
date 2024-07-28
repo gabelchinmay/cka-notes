@@ -5,16 +5,15 @@ metadata:
   name: chinmay
 spec:
   expirationSeconds: 600
+  signerName: kubernetes.io/kube-apiserver-client
   usages:
-    - digital signature
-    - key encipherment
-    - server auth
+    - any
   request:
     <request in base64>
 
 
 # openssl req -new -key admin.key -subj "/CN=kube-admin" -out admin.csr   => Generate CSR => encode it in base64
-# cat admin.csr | base64
+# cat admin.csr | base64 -w 0
 
 # kubectl get csr
 # kubectl approve csr akshay
