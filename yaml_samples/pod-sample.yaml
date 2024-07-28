@@ -83,3 +83,4 @@ spec:
 # kubectl run nginx --image=nginx
 # kubectl run nginx --image=nginx --dry-run=client -o yaml
 # kubectl get pods -l env=dev --show-labels
+# test pod: kubectl run test -it --image=busybox --rm -- sh
