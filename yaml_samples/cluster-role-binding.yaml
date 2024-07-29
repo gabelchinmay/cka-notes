@@ -10,3 +10,5 @@ roleRef:
   kind: ClusterRole
   name: cluster-administrator
   apiGroup: rbac.authorization.k8s.io
+
+# kubectl create clusterrolebinding michelle-storage-admin  --clusterrole=storage-admin  --user=michelle

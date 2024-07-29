@@ -6,3 +6,5 @@ rules:
 - apiGroups: [""]
   resources: ["nodes"]
   verbs: ["list", "get", "create", "delete"]
+
+# kubectl create clusterrole storage-admin --resource=pv,sc --verb=list,get,create,delete,update
