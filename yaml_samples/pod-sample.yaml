@@ -82,5 +82,9 @@ spec:
 
 # kubectl run nginx --image=nginx
 # kubectl run nginx --image=nginx --dry-run=client -o yaml
+
+# create pod + service
+# kubectl run httpd --image=httpd:alpine --port=80  --expose
+
 # kubectl get pods -l env=dev --show-labels
 # test pod: kubectl run test -it --image=busybox --rm -- sh
