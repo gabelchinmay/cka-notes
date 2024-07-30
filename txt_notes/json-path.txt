@@ -1,0 +1,21 @@
+kubectl get pods -o=custom-columns=POD_NAME:.metadata.name,POD_NAMESPACE:.metadata.namespace
+POD_NAME                     POD_NAMESPACE
+nginx-app-66b5bd779f-jh88x   default
+nginx-app-66b5bd779f-lkshq   default
+nginx-app-66b5bd779f-nslq4   default
+nginx-app-66b5bd779f-pp9nm   default
+nginx-app-66b5bd779f-sj969   default
+
+
+
+kubectl get nodes -o=jsonpath='{.items[*].status.addresses[?(@.type == "InternalIP")].address}'
+192.168.16.129
+
+
+kubectl get pods -o=custom-columns='POD_NAME:.metadata.name,POD_CREATION_TIME:.status.conditions[?(@.type=="PodScheduled")].lastTransitionTime'
+POD_NAME                     POD_CREATION_TIME
+nginx-app-66b5bd779f-jh88x   2024-07-27T22:36:14Z
+nginx-app-66b5bd779f-lkshq   2024-07-27T22:36:14Z
+nginx-app-66b5bd779f-nslq4   2024-07-27T22:36:16Z
+nginx-app-66b5bd779f-pp9nm   2024-07-27T22:36:14Z
+nginx-app-66b5bd779f-sj969   2024-07-27T22:36:17Z
