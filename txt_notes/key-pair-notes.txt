@@ -14,3 +14,7 @@ openssl x509 -req -in admin.csr -CA ca.crt -CAKey ca.key -out admin.crt
 
 to see crt as txt
 openssl x509 -in /etc/kubernetes/pki/etcd/server.crt -text -noout
+
+# renew certificate 
+kubeadm certs check-expiration | grep apiserver
+kubeadm certs renew apiserver
