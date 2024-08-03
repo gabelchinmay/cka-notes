@@ -56,3 +56,10 @@ sudo systemctl restart kubelet
 # replace <node-to-uncordon> with the name of your node
 kubectl uncordon <node-to-uncordon>
 
+
+# creating kubeadm token on control plane
+kubeadm token create --print-join-command
+kubeadm token list
+
+# On the worker node to join
+kubeadm join 192.168.100.31:6443 --token zodhba.wlxmtvumtjpgaevg --discovery-token-ca-cert-hash sha256:6819708bfec2336183a68138d680ea7bf81dfbf9a57b3fca1c51bdc2f4fc6e99
