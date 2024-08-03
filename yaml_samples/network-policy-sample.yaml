@@ -30,3 +30,58 @@ spec:
       ports:
         - protocol: TCP
           port: 80
+
+
+---
+
+apiVersion: networking.ks8.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-port-from-namespace
+  namespace: fubar
+spec:
+  podSelector:
+    matchLabels: {}
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+      - namespaceSelector::
+          matchLabels:
+            name: internal
+      ports:
+      - protocol: TCP
+        port: 9000
+
+
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: internal-policy
+spec:
+  podSelector:
+    matchLabels:
+      name: internal
+  policyTypes:
+  - Egress
+  egress: # egress is a list of structs containing to and ports fields
+    - to: # to is a list of structs containing podSelector,  namespaceSelector and ipBlock fields
+      - podSelector:
+          matchLabels:
+            name: payroll
+      ports: # ports is a list of structs containing protocol and port fields
+        - protocol: TCP
+          port: 8080
+    - to:
+      - podSelector:
+          matchLabels:
+            name: mysql
+      ports:
+        - protocol: TCP
+          port: 3306
+    - ports:
+      - protocol: TCP
+        port: 53
+      - protocol: UDP
+        port: 53
