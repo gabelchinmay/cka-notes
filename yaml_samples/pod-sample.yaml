@@ -39,6 +39,13 @@ spec:
       volumeMounts:
         - name: data-volume
           mountPath: /opt
+      resources:
+        requests:
+          memory: "1Gi"
+          cpu: 2
+        limits:
+          memory: "2Gi"
+          cpu: "5"
   nodeName: node01
   tolerations:
     - key: "app"
@@ -56,13 +63,6 @@ spec:
               operator: In #In (or) NotIn (or) Exists
               values:
                 - Large
-  resources:
-    requests:
-      memory: "1Gi"
-      cpu: 2
-    limits:
-      memory: "2Gi"
-      cpu: "5"
   schedulerName: name_of_custom_scheduler
   volumes:
     - name: app-secret-volume
