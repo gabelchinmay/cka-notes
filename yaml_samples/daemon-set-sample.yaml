@@ -8,7 +8,6 @@ metadata:
     app: mywebsite
     tier: frontend
 spec:
-  replicas: 4
   template:
     metadata:
       name: myapp-pod
